@@ -1,0 +1,1 @@
+<cfoutput>#$.dspBody(body=$.content('body'),crumbList=0,showMetaImage=0)#</cfoutput>

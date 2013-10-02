@@ -1,0 +1,175 @@
+// Master Variable File - Based on Preboot
+
+// Brand colors
+@brand-primary:			#2ba6cb;
+@brand-success:			#5cb85c;
+@brand-warning: 		#f0ad4e;
+@brand-danger: 			#d9534f;
+@brand-info: 			#5bc0de;
+
+@body-background:       @white;
+
+@black: 				#000;
+@white: 				#fff;
+
+// Link Styles
+@link-color:            @brand-primary;
+@link-color-hover:      darken(@link-color, 15%);
+
+// Typography
+@font-color: 			   #222;
+@font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-family-serif:       Georgia, "Times New Roman", Times, serif;
+@font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace;
+@font-family-base:        @font-family-sans-serif;
+
+@font-size-base:          14px;
+@font-size-large:         @font-size-base * 1.25; // ~18px
+@font-size-small:         @font-size-base * 0.85; // ~12px
+@font-size-mini:          @font-size-base * 0.75; // ~11px
+
+@line-height-base:        1.4;
+
+@headings-font-family:    inherit; // empty to use BS default, @font-family-base
+@headings-font-weight:    500;
+
+// Forms
+@input-color-placeholder: lighten(@font-color, 25%);
+
+
+
+
+//
+// Mixins: vendor prefixes
+// --------------------------------------------------
+
+// Single side border-radius
+.border-top-radius(@radius) {
+  border-top-right-radius: @radius;
+   border-top-left-radius: @radius;
+}
+.border-right-radius(@radius) {
+  border-bottom-right-radius: @radius;
+     border-top-right-radius: @radius;
+}
+.border-bottom-radius(@radius) {
+  border-bottom-right-radius: @radius;
+   border-bottom-left-radius: @radius;
+}
+.border-left-radius(@radius) {
+  border-bottom-left-radius: @radius;
+     border-top-left-radius: @radius;
+}
+
+// Drop shadows
+.box-shadow(@shadow) {
+  -webkit-box-shadow: @shadow; // iOS <4.3 & Android <4.1
+          box-shadow: @shadow;
+}
+
+// Opacity
+.opacity(@opacity) {
+  opacity: @opacity;
+  @opacity-ie: @opacity * 100;
+  filter: ~"alpha(opacity=@{opacity-ie})"; // IE8
+}
+
+// Placeholder text
+.placeholder(@color: @input-color-placeholder) {
+  &:-moz-placeholder            { color: @color; } // Firefox 4-18
+  &::-moz-placeholder           { color: @color; } // Firefox 19+
+  &:-ms-input-placeholder       { color: @color; } // Internet Explorer 10+
+  &::-webkit-input-placeholder  { color: @color; } // Safari and Chrome
+}
+
+// Reset filters for IE
+//
+// Useful for when you want to remove a gradient from an element.
+.reset-filter() {
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(enabled = false)"));
+}
+
+//
+// Mixins: utilities
+// --------------------------------------------------
+
+// Clearfix
+//
+// Source: http://nicolasgallagher.com/micro-clearfix-hack/
+//
+// For modern browsers
+// 1. The space content is one way to avoid an Opera bug when the
+//    contenteditable attribute is included anywhere else in the document.
+//    Otherwise it causes space to appear at the top and bottom of elements
+//    that are clearfixed.
+// 2. The use of `table` rather than `block` is only necessary if using
+//    `:before` to contain the top-margins of child elements.
+.clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+// Center-align a block level element
+.center-block() {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Sizing shortcuts
+.size(@width, @height) {
+  width: @width;
+  height: @height;
+}
+.square(@size) {
+  .size(@size, @size);
+}
+
+// Text overflow
+//
+// Requires inline-block or block for proper styling
+.text-truncate() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Retina images
+
+// Retina background-image support with non-retina fall back
+
+// .retina-image(@file-1x, @file-2x, @width-1x, @height-1x) {
+//   background-image: url("@{file-1x}");
+
+//   @media
+//   only screen and (-webkit-min-device-pixel-ratio: 2),
+//   only screen and (   min--moz-device-pixel-ratio: 2),
+//   only screen and (     -o-min-device-pixel-ratio: 2/1),
+//   only screen and (        min-device-pixel-ratio: 2),
+//   only screen and (                min-resolution: 192dpi),
+//   only screen and (                min-resolution: 2dppx) {
+//     background-image: url("@{file-2x}");
+//     background-size: @width-1x @height-1x;
+//   }
+// }
+
+// Mura Specific
+// ---------------------------------------------
+// Sidebar Styles
+@offsetValue:					15px;
+
+.outdent(@multiplier:1) {
+	margin-left: -@offsetValue*@multiplier;
+	margin-right: -@offsetValue*@multiplier;
+}
+
+.indent(@multiplier:1) {
+	padding-left: @offsetValue*@multiplier;
+	padding-right: @offsetValue*@multiplier;
+}
